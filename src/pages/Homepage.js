@@ -8,25 +8,25 @@ const Homepage = () => {
     const [page, setPage] = useState(1);
     const [currentSearch, setCurrentSearch] = useState("");
     const auth = "w3derqhOepRLWBKdTrri29HLqQya0GNwA6SlU9vWiS82GBhdYgqMnB4X";
-    const initialURL = "https://api.pexels.com/v1/curated?page=1&per_page=15";
-    const searchURL = `https://api.pexels.com/v1/search?query=${currentSearch}&per_page=15&page=1`;
+    const initialURL = "https://api.pexels.com/v1/curated?locate='zh-TW'&page=1&per_page=15";
+    const searchURL = `https://api.pexels.com/v1/search?query=${currentSearch}&locate='zh-TW'&per_page=15&page=1`;
 
     // fetch data from pexels api
     const search = async (url) => {
         setPage(2);
         if (input === "") {
             url = initialURL;
-        } 
-            const dataFetch = await fetch(url, {
-                method: "GET",
-                headers: {
-                    Accept: "application/json",
-                    Authorization: auth,
-                },
-            });
-            let parsedData = await dataFetch.json();
-            // console.log(parsedData);
-            setData(parsedData.photos);
+        }
+        const dataFetch = await fetch(url, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                Authorization: auth,
+            },
+        });
+        let parsedData = await dataFetch.json();
+        // console.log(parsedData);
+        setData(parsedData.photos);
     }
 
     // load more pictures
@@ -35,9 +35,9 @@ const Homepage = () => {
         let newURL;
         // 1.精選
         if (currentSearch === "") {
-            newURL = `https://api.pexels.com/v1/curated?page=${page}&per_page=15`
+            newURL = `https://api.pexels.com/v1/curated?page=${page}&per_page=15&locate='zh-TW'`
         } else { //  2.搜尋
-            newURL = `https://api.pexels.com/v1/search?query=${currentSearch}&per_page=15&page=${page}`
+            newURL = `https://api.pexels.com/v1/search?query=${currentSearch}&per_page=15&page=${page}&locate='zh-TW'`
         }
         setPage(page + 1);
 
@@ -53,7 +53,7 @@ const Homepage = () => {
         if (parsedData.photos) {
             setData(data.concat(parsedData.photos));
             // setData([...data,...parsedData.photos]);
-            
+
             // if (data) {
             //     setData(data.concat(parsedData.photos));
             // } else {
