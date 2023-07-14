@@ -8,8 +8,8 @@ const Homepage = () => {
     const [page, setPage] = useState(1);
     const [currentSearch, setCurrentSearch] = useState("");
     const auth = "w3derqhOepRLWBKdTrri29HLqQya0GNwA6SlU9vWiS82GBhdYgqMnB4X";
-    const initialURL = "https://api.pexels.com/v1/curated?locate='zh-TW'&page=1&per_page=15";
-    const searchURL = `https://api.pexels.com/v1/search?query=${currentSearch}&locate='zh-TW'&per_page=15&page=1`;
+    const initialURL = "https://api.pexels.com/v1/curated?locale=zh-TW&page=1&per_page=15";
+    const searchURL = `https://api.pexels.com/v1/search?query=${currentSearch}&locale=zh-TW&per_page=15&page=1`;
 
     // fetch data from pexels api
     const search = async (url) => {
@@ -35,9 +35,9 @@ const Homepage = () => {
         let newURL;
         // 1.精選
         if (currentSearch === "") {
-            newURL = `https://api.pexels.com/v1/curated?page=${page}&per_page=15&locate='zh-TW'`
+            newURL = `https://api.pexels.com/v1/curated?page=${page}&per_page=15&locale=zh-TW`
         } else { //  2.搜尋
-            newURL = `https://api.pexels.com/v1/search?query=${currentSearch}&per_page=15&page=${page}&locate='zh-TW'`
+            newURL = `https://api.pexels.com/v1/search?query=${currentSearch}&per_page=15&page=${page}&locale=zh-TW`
         }
         setPage(page + 1);
 
